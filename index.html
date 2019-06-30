@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+</head>
+<body>
+<button type="button"onclick="showO()">O</button>
+<button type="button"onclick="showX()">X</button>
+<p id  =  "caro"></p>
+<script>
+    let b = document.getElementById('caro');
+    let data ="";
+    let broad = [];
+    for( let i = 0; i<50; i++){
+        broad[i]= [];
+        for(let j = 0;j<50;j++){
+            broad[i][j]="."+"&nbsp;&nbsp;";
+        }
+    }
+    for(let i = 0;i<50;i++){
+        data+= "<br>";
+        for(let j=0;j<50;j++){
+            data += broad[i][j]+"&nbsp;&nbsp;&nbsp;";
+        }
+    }
+    data+="<p>";
+    b.innerHTML=data;
+    function testX() {
+        for(let i =0;i<50;i++){
+            for(let j =0;j<50;j++){
+                if((broad[i][j]==="X"&&
+                    broad[i][j-1]==="X" &&
+                    broad[i][j+1]==="X")
+                ||
+                    (broad[i][j]==="X"&&
+                    broad[i-1][j]==="X"&&
+                    broad[i+1][j]==="X")
+                ||
+                    (broad[i][j]==="X"&&
+                    broad[i-1][j-1]==="X"&&
+                    broad[i+1][j+1]==="X")
+                ||
+                    (broad[i][j]==="X"&&
+                    broad[i-1][j+1]==="X"&&
+                    broad[i+1][j-1]==="X" )){
+                    alert("X Win");
+                }
+            }
+        }
+    }
+    function testO() {
+        for(let i =0;i<50;i++){
+            for(let j =0;j<50;j++){
+                if((broad[i][j]==="O"&&
+                    broad[i][j-1]==="O" &&
+                    broad[i][j+1]==="O")
+                    ||
+                    (broad[i][j]==="O"&&
+                        broad[i-1][j]==="O"&&
+                        broad[i+1][j]==="O")
+                    ||
+                    (broad[i][j]==="O"&&
+                        broad[i-1][j-1]==="O"&&
+                        broad[i+1][j+1]==="O")
+                    ||
+                    (broad[i][j]==="O"&&
+                        broad[i-1][j+1]==="O"&&
+                        broad[i+1][j-1]==="O" )){
+                    alert("O Win");
+
+                }
+            }
+        }
+    }
+    function showO() {
+        let x = prompt("x: ").toString();
+        let y = prompt("y: ").toString();
+        data = "";
+        broad[x][y] = "O";
+        for(let i = 0;i<50;i++){
+            data+="<br>";
+            for(let j = 0;j<50;j++){
+                data+=broad[i][j]+"&nbsp;&nbsp;&nbsp;";
+            }
+        }
+        data+="<br><br><p>";
+        b.innerHTML=data;
+        testO();
+    }
+    function showX() {
+        let x = prompt("x: ").toString();
+        let y = prompt("y: ").toString();
+        data = "";
+        broad[x][y] = "X";
+        for(let i = 0;i<50;i++){
+            data+="<br>";
+            for(let j = 0;j<50;j++){
+                data+=broad[i][j]+"&nbsp;&nbsp;&nbsp;";
+            }
+        }
+        data+="<br><br><p>";
+        b.innerHTML=data;
+        testX();
+    }
+
+</script>
+</body>
+</html>
